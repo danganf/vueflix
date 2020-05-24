@@ -1,0 +1,124 @@
+<template>
+    <div>
+        <section class="home">
+
+            <div class="owl-carousel home__bg">
+                <div class="home__cover" style="background: url('img/home/home__bg4.jpg') center center / cover no-repeat;"></div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 n-p-l">
+                        <h1 class="home__title">Os mais <b>recentes</b></h1>
+                        <button class="home__nav home__nav--prev" type="button"><i class="icon ion-ios-arrow-round-back"></i></button>
+                        <button class="home__nav home__nav--next" type="button"><i class="icon ion-ios-arrow-round-forward"></i></button>
+                    </div>
+
+                    <div class="col-12 carrousel-container">
+                        <div class="owl-carousel home__carousel swiper-wrapper">
+                            <div v-for="product in products" class="item swiper-slide">
+                                <c-prod-card :product="product"></c-prod-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--bg">
+            <div class="content__head">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="section__title">Ultimas séries incluidas</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div v-for="product in products" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            <c-prod-card :class-name="''" :product="product"></c-prod-card>
+                        </div>
+                    </div>
+                    <div class="col-12 btn-see-more">
+                        <a href="#" class="section__btn">Veja +</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>
+
+<script>
+
+    import Swiper from 'swiper';
+    import CProdCard from "../components/product/Card";
+
+    export default {
+
+        components: { CProdCard },
+
+        data: () => {
+            return {
+                products: []
+            }
+        },
+        methods:{
+            initSwiper () {
+                new Swiper('.carrousel-container', {
+                    spaceBetween: 30,
+                    speed: 500,
+                    slidesPerView: 4,
+                    slidesPerColumn: 1,
+                    watchSlidesVisibility: true,
+                    autoplay: false,
+                    loop: true,
+                    // Responsive breakpoints
+                    breakpoints: {
+                        0    : {slidesPerView: 1,},
+                        375  : {slidesPerView: 1,},
+                        425  : {slidesPerView: 2,},
+                        576  : {slidesPerView: 2,},
+                        768  : {slidesPerView: 3,},
+                        992  : {slidesPerView: 4,},
+                        1200 : {slidesPerView: 4,},
+                    },
+                    navigation: {
+                        nextEl: '.home__nav--next',
+                        prevEl: '.home__nav--prev',
+                    },
+                    paginationClickable: false,
+                });
+            }
+
+        },
+
+        updated(){
+            this.initSwiper();
+        },
+
+        mounted() {
+            this.products.push( { name: "Senhor dos Aneis", image: 'img/covers/cover.jpg', categories:[], rate:9.8 } );
+            this.products.push( { name: "Matrix Revolutions", image: 'img/covers/cover2.jpg', categories:[], rate: 8.6 } );
+            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
+            this.products.push( { name: "John Wick", image: 'img/covers/cover3.jpg', categories:[], rate: 9.2 } );
+            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover4.jpg', categories:[], rate: 9.2 } );
+            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
+
+            /*this.products.push( { name: null, image: 'img/covers/cover.jpg', categories:[], rate: 9.2 } );*/
+        }
+    };
+</script>
+
+<style scoped>
+    .carrousel-container {margin-left: auto;margin-right: auto;position: relative;list-style: none;padding: 0;overflow: hidden;}
+    .swiper-wrapper{display: inline-flex;}
+    .home__cover{height: 100%;}
+    .home__carousel .item{float: left;}
+
+    @media (min-width: 320px) {
+        .home__carousel .item{padding: 0 15px 0 15px;}
+        .btn-see-more{padding-bottom: 30px;}
+    }
+    @media (min-width: 425px) {
+        .home__carousel .item{padding: 0 0 0 0;}
+    }
+</style>
