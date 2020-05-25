@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/plyr.css">
+    <link rel="stylesheet" href="css/photoswipe.css">
+    <link rel="stylesheet" href="css/default-skin.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="icon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+
+    <style>
+        .featured-background{
+            background: url(/public/img/home/home__bg.jpg);
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            opacity: 0.07;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 665.375px;
+        }
+    </style>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Daniel Azevedo Guimarães">
+    <title>VueFlix – Online Movies, TV Shows & Cinema</title>
+
+</head>
+<body id="app" class="body">
+    <!-- header -->
+    <header class="header">
+        <div class="header__wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header__content">
+                            <!-- header logo -->
+                            <a href="" class="header__logo">
+                                VUE<span class="last">FLIX</span>
+                            </a>
+                            <!-- end header logo -->
+
+                            <!-- header nav -->
+                            <ul class="header__nav">
+                                <!-- dropdown -->
+                                <li class="header__nav-item">
+                                    <a class="header__nav-link" href="#" role="button">Inicio</a>
+                                </li>
+                                <!-- end dropdown -->
+
+                                <!-- dropdown -->
+                                <li class="header__nav-item">
+                                    <a class="dropdown-toggle header__nav-link" href="#" role="button">Catalogo</a>
+                                    <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
+                                        <li><a href="#">Filmes</a></li>
+                                        <li><a href="#">Séries</a></li>
+                                    </ul>
+                                </li>
+                                <!-- end dropdown -->
+
+                                <li class="header__nav-item">
+                                    <a href="#" class="header__nav-link">Nossos Planos</a>
+                                </li>
+                            </ul>
+                            <!-- end header nav -->
+
+                            <!-- header auth -->
+                            <div class="header__auth">
+                                <button class="header__search-btn" id="search-btn" type="button">
+                                    <i class="icon ion-ios-search"></i>
+                                </button>
+
+                                <a href="#" class="header__sign-in">
+                                    <i class="icon ion-ios-log-in"></i>
+                                    <span>entrar</span>
+                                </a>
+                            </div>
+                            <!-- end header auth -->
+
+                            <!-- header menu btn -->
+                            <button class="header__btn" type="button">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                            <!-- end header menu btn -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- header search -->
+        <form action="#" id="header__search" class="header__search">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header__search-content">
+                            <input type="text" placeholder="Procure um filmes e séries de TV">
+                            <button type="button">buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- end header search -->
+    </header>
+    <!-- end header -->
+
+    <!-- footer -->
+    <footer class="footer" style="bottom: 0;position: absolute;margin: auto;width: 100%;">
+        <div class="container">
+            <div class="row">
+                <!-- footer list -->
+                <div class="col-12 col-md-3">
+                    <h6 class="footer__title">Baixe nosso aplicativo</h6>
+                    <ul class="footer__app">
+                        <li><a href="#"><img src="img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+                        <li><a href="#"><img src="img/google-play-badge.png" alt=""></a></li>
+                    </ul>
+                </div>
+                <!-- end footer list -->
+
+                <!-- footer list -->
+                <div class="col-6 col-sm-4 col-md-3">
+                    <h6 class="footer__title">Sobre nós</h6>
+                    <ul class="footer__list">
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Preços</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <!-- end footer list -->
+
+                <!-- footer list -->
+                <div class="col-6 col-sm-4 col-md-3">
+                    <h6 class="footer__title">Outros</h6>
+                    <ul class="footer__list">
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Politica de privacidade</a></li>
+                        <li><a href="#">Suporte</a></li>
+                    </ul>
+                </div>
+                <!-- end footer list -->
+
+                <!-- footer list -->
+                <div class="col-12 col-sm-4 col-md-3">
+                    <h6 class="footer__title">Contato</h6>
+                    <ul class="footer__list">
+                        <li><a href="tel:+18002345678">+55 21 98169-2318</a></li>
+                        <li><a href="mailto:support@moviego.com">danielazevedo2k2@gmail.com</a></li>
+                    </ul>
+                    <ul class="footer__social">
+                        <li class="facebook"><a href=https://www.facebook.com/dazevedoguimaraes#"><i class="icon ion-logo-facebook"></i></a></li>
+                        <li class="instagram"><a href="https://www.instagram.com/danielaze2k12/"><i class="icon ion-logo-instagram"></i></a></li>
+                        <li class="twitter"><a href="https://twitter.com/danganf"><i class="icon ion-logo-twitter"></i></a></li>
+                    </ul>
+                </div>
+                <!-- end footer list -->
+
+                <!-- footer copyright -->
+                <div class="col-12">
+                    <div class="footer__copyright">
+                        <small><a target="_blank" href="https://www.templateshub.net">VUEFLIX</a></small>
+
+                        <ul>
+                            <li><a href="#">Termos de uso</a></li>
+                            <li><a href="#">Politica de privacidade</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end footer copyright -->
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    <script>
+        document.getElementById("search-btn").addEventListener("click", function( event ) {
+            let element = document.getElementById("header__search");
+            if( element.className.indexOf('header__search--active') === -1 ) {
+                element.classList.add("header__search--active");
+                element.getElementsByTagName('input')[0].focus();
+            } else {
+                element.classList.remove("header__search--active");
+            }
+        }, false);
+    </script>
+
+</body>
+</html>
