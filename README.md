@@ -1,5 +1,11 @@
 # VUEFLIX
 
+### Link da DEMO:
+Ainda em desenvolvimento
+```
+https://unruffled-euler-98150e.netlify.app/
+```
+
 ## Project setup
 ```
 npm install
