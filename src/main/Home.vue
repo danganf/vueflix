@@ -9,14 +9,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 n-p-l">
-                        <h1 class="home__title">Os mais <b>recentes</b></h1>
+                        <h1 class="home__title">Os mais <b>populares</b> <i v-if="preloader" class="fas fa-spinner fa-pulse fa-1x"></i></h1>                        
                         <button class="home__nav home__nav--prev" type="button"><i class="icon ion-ios-arrow-round-back"></i></button>
                         <button class="home__nav home__nav--next" type="button"><i class="icon ion-ios-arrow-round-forward"></i></button>
                     </div>
 
-                    <div class="col-12 carrousel-container">
-                        <div class="owl-carousel home__carousel swiper-wrapper">
-                            <div v-for="product in products" class="item swiper-slide">
+                    <div class="col-12 carrousel-container">  
+                        <div class="owl-carousel home__carousel swiper-wrapper">                                                     
+                            <div v-for="(product, idx) in productsPopularity" :key="`c-prod-card${idx}`" class="item swiper-slide">
                                 <c-prod-card :product="product"></c-prod-card>
                             </div>
                         </div>
@@ -25,17 +25,17 @@
             </div>
         </section>
 
-        <section class="section section--bg">
+        <section v-for="(product, idx) in products" :key="`c-prod-card${idx}`" class="section section--bg">
             <div class="content__head">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="section__title">Ultimas séries incluidas</h2>
+                            <h2 class="section__title">{{product.label}} <i v-if="preloader" class="fas fa-spinner fa-pulse fa-1x"></i></h2>
                         </div>
                     </div>
                     <div class="row">
-                        <div v-for="product in products" class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                            <c-prod-card :class-name="''" :product="product"></c-prod-card>
+                        <div v-for="(row, idx2) in product.data" :key="`c-prod-card${idx2}`" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+                            <c-prod-card :class-name="''" :product="row"></c-prod-card>
                         </div>
                     </div>
                     <div class="col-12 btn-see-more">
@@ -44,6 +44,7 @@
                 </div>
             </div>
         </section>
+        
     </div>
 </template>
 
@@ -51,6 +52,7 @@
 
     import Swiper from 'swiper';
     import CProdCard from "../components/product/Card";
+    import {URL_BASE} from "../configs/configs";
 
     export default {
 
@@ -58,7 +60,9 @@
 
         data: () => {
             return {
-                products: []
+                productsPopularity: [],
+                products: [],
+                preloader: false,
             }
         },
         methods:{
@@ -87,6 +91,27 @@
                     },
                     paginationClickable: false,
                 });
+            },
+            async getProducts(){
+                this.preloader = true;
+                await window.axios.get( URL_BASE + 'films/home' )
+                    .then(( result ) => {
+                        this.preloader          = false;
+                        this.productsPopularity = result.data[0].data;
+                        result.data.splice(0,1);
+                        this.products = result.data;
+                        
+                        // Object.keys( result.data ).reduce((key) => {
+                        //     console.log( result.data[key] );                    
+                        // });
+
+                        result.data.map( (element) => {
+                            console.log(element);
+                        } );
+
+                    }).catch(error => {
+                        this.preloader = false;
+                    });
             }
 
         },
@@ -96,14 +121,13 @@
         },
 
         mounted() {
-            this.products.push( { name: "Senhor dos Aneis", image: 'img/covers/cover.jpg', categories:[], rate:9.8 } );
-            this.products.push( { name: "Matrix Revolutions", image: 'img/covers/cover2.jpg', categories:[], rate: 8.6 } );
-            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
-            this.products.push( { name: "John Wick", image: 'img/covers/cover3.jpg', categories:[], rate: 9.2 } );
-            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover4.jpg', categories:[], rate: 9.2 } );
-            this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
-
-            /*this.products.push( { name: null, image: 'img/covers/cover.jpg', categories:[], rate: 9.2 } );*/
+            this.getProducts();
+            // this.products.push( { name: "Senhor dos Aneis", image: 'img/covers/cover.jpg', categories:[], rate:9.8 } );
+            // this.products.push( { name: "Matrix Revolutions", image: 'img/covers/cover2.jpg', categories:[], rate: 8.6 } );
+            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
+            // this.products.push( { name: "John Wick", image: 'img/covers/cover3.jpg', categories:[], rate: 9.2 } );
+            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover4.jpg', categories:[], rate: 9.2 } );
+            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
         }
     };
 </script>
