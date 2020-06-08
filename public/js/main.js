@@ -28659,7 +28659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NAME_TOKEN", function() { return NAME_TOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PREFX_STORAGE", function() { return PREFX_STORAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API_TOKEN", function() { return API_TOKEN; });
-var URL_BASE = 'http://localhost:3001/';
+var URL_BASE = 'https://vue-flix-backend.herokuapp.com/';
 var NAME_TOKEN = 'auth_token';
 var PREFX_STORAGE = 'vueflix';
 var API_TOKEN = '668c7a3f4c06597eb4ec7315cfaa1f47';

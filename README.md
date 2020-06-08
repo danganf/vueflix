@@ -4,6 +4,11 @@
 Ainda em desenvolvimento
 ```
 https://unruffled-euler-98150e.netlify.app/
+
+### Link da BACKEDND feito em node:
+Ainda em desenvolvimento
+```
+https://vue-flix-backend.herokuapp.com/
 ```
 
 ## Project setup

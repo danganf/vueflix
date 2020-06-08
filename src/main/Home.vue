@@ -100,16 +100,9 @@
                         this.productsPopularity = result.data[0].data;
                         result.data.splice(0,1);
                         this.products = result.data;
-                        
-                        // Object.keys( result.data ).reduce((key) => {
-                        //     console.log( result.data[key] );                    
-                        // });
-
-                        result.data.map( (element) => {
-                            console.log(element);
-                        } );
 
                     }).catch(error => {
+                        console.log(error);
                         this.preloader = false;
                     });
             }
