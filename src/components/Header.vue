@@ -15,7 +15,7 @@
                             <ul class="header__nav">
                                 <!-- dropdown -->
                                 <li class="header__nav-item">
-                                    <a class="header__nav-link" href="#" role="button">Inicio</a>
+                                    <router-link :to="{ name: 'home'}" role="button" class="header__nav-link">Inicio</router-link>
                                 </li>
                                 <!-- end dropdown -->
 
@@ -28,10 +28,6 @@
                                     </ul>
                                 </li>
                                 <!-- end dropdown -->
-
-                                <li class="header__nav-item">
-                                    <a href="#" class="header__nav-link">Nossos Planos</a>
-                                </li>
                             </ul>
                             <!-- end header nav -->
 

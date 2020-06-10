@@ -2,10 +2,10 @@
     <div class="card" :class="className">
         <div class="card__cover">
             <img :src="product.poster_path" alt="">
-            <a href="#" class="card__play"><i class="icon ion-ios-play"></i></a>
+            <a class="card__play" @click="toDetail(product.id)"><i class="icon ion-ios-play"></i></a>
         </div>
         <div class="card__content">
-            <h3 class="card__title"><a href="#">{{product.title}}</a></h3>
+            <h3 class="card__title" @click="toDetail(product.id)"><a>{{product.title}}</a></h3>
             <span class="card__category">
                 <a href="#">Action</a>
                 <a href="#">Triler</a>
@@ -34,7 +34,9 @@
         },
 
         methods:{
-
+            toDetail(prodId){
+                this.$router.push({name: 'prod-detail', params: { type: 'tv', id: prodId }})
+            }
         },
 
         mounted() {
@@ -44,5 +46,5 @@
 </script>
 
 <style scoped>
-
+    .card__title{cursor: pointer;}
 </style>

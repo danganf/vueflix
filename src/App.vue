@@ -1,18 +1,23 @@
 <template>
     <div id="app">
         <c-header></c-header>
-        <c-home></c-home>
+        
+        <transition name="moveInUp">
+            <router-view></router-view>
+        </transition>
+
         <c-footer></c-footer>
     </div>
 </template>
 
 <script>
     import CHeader from "./components/Header";
-    import CFooter from "./components/Footer";
-    import CHome from "./main/Home";
+    import CFooter from "./components/Footer";     
+    import router from './routes/routers';  
 
     export default {
-        components: { CHeader, CHome, CFooter }
+        router,
+        components: { CHeader, CFooter }
     }
 </script>
 

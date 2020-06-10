@@ -115,12 +115,6 @@
 
         mounted() {
             this.getProducts();
-            // this.products.push( { name: "Senhor dos Aneis", image: 'img/covers/cover.jpg', categories:[], rate:9.8 } );
-            // this.products.push( { name: "Matrix Revolutions", image: 'img/covers/cover2.jpg', categories:[], rate: 8.6 } );
-            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
-            // this.products.push( { name: "John Wick", image: 'img/covers/cover3.jpg', categories:[], rate: 9.2 } );
-            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover4.jpg', categories:[], rate: 9.2 } );
-            // this.products.push( { name: "Os Vingadores", image: 'img/covers/cover5.jpg', categories:[], rate: 9.2 } );
         }
     };
 </script>

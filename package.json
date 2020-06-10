@@ -13,23 +13,23 @@
     "watch-poll": "npm run watch -- --watch-poll",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-
   },
   "dependencies": {
+    "axios": "^0.19",
     "core-js": "^3.6.4",
-    "vue": "^2.*",
-    "vue-snotify": "*",
-    "vue-swal": "*",
-    "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.4.0",
+    "modal-vue": "*",
+    "popper.js": "*",
     "swiper": "^5.4.0",
     "time-storage": "^1.0.0",
+    "vue": "^2.*",
+    "vue-router": "^3.3.2",
+    "vue-snotify": "*",
     "vue-social-sharing": "^2.4.7",
+    "vue-swal": "*",
+    "vue-template-compiler": "^2.6.11",
     "vue-the-mask": "^0.11.1",
     "vuelidate": "^0.7.5",
-    "axios": "^0.19",
-    "modal-vue": "*",
-    "popper.js": "*"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
