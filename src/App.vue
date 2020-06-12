@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <c-header></c-header>ssss
-        <!-- <transition name="moveInUp"> -->
+        <transition name="moveInUp">
             <router-view></router-view>
-        <!-- </transition> -->
+        </transition>
         <c-footer></c-footer>
     </div>
 </template>

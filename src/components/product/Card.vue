@@ -22,6 +22,10 @@
                 type: Object,
                 required: true
             },
+            mediaType:{
+                type: String,
+                default: 'movie'
+            },
             className:{
                 type: String,
                 default: 'card--big'
@@ -35,7 +39,7 @@
 
         methods:{
             toDetail(prodId){
-                this.$router.push({name: 'prod-detail', params: { type: 'tv', id: prodId }})
+                this.$router.push({name: 'prod-detail', params: { type: this.mediaType, id: prodId } } )
             }
         },
 
@@ -46,5 +50,5 @@
 </script>
 
 <style scoped>
-    .card__title{cursor: pointer;}
+    .card__title, .card__play{cursor: pointer;}
 </style>

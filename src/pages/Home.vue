@@ -16,8 +16,8 @@
 
                     <div class="col-12 carrousel-container">  
                         <div class="owl-carousel home__carousel swiper-wrapper">                                                     
-                            <div v-for="(product, idx) in productsPopularity" :key="`c-prod-card${idx}`" class="item swiper-slide">
-                                <c-prod-card :product="product"></c-prod-card>
+                            <div v-for="(product, idx) in productsPopularity.data" :key="`c-prod-card${idx}`" class="item swiper-slide">
+                                <c-prod-card :media-type="productsPopularity.media" :product="product"></c-prod-card>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="row">
                         <div v-for="(row, idx2) in product.data" :key="`c-prod-card${idx2}`" class="col-6 col-sm-4 col-lg-3 col-xl-2">
-                            <c-prod-card :class-name="''" :product="row"></c-prod-card>
+                            <c-prod-card :class-name="''" :media-type="product.media" :product="row"></c-prod-card>
                         </div>
                     </div>
                     <div class="col-12 btn-see-more">
@@ -97,7 +97,7 @@
                 await window.axios.get( process.env.URL_API_BACKEND + 'media/home' )
                     .then(( result ) => {
                         this.preloader          = false;
-                        this.productsPopularity = result.data[0].data;
+                        this.productsPopularity = result.data[0];
                         result.data.splice(0,1);
                         this.products = result.data;
 
@@ -114,7 +114,6 @@
         },
 
         mounted() {
-            console.log(process.env);
             this.getProducts();
         }
     };
