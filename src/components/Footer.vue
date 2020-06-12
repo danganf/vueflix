@@ -6,8 +6,8 @@
                 <div class="col-12 col-md-3">
                     <h6 class="footer__title">Baixe nosso aplicativo</h6>
                     <ul class="footer__app">
-                        <li><a href="#"><img src="img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
-                        <li><a href="#"><img src="img/google-play-badge.png" alt=""></a></li>
+                        <li><a href="#"><img src="static/img/Download_on_the_App_Store_Badge.svg" alt=""></a></li>
+                        <li><a href="#"><img src="static/img/google-play-badge.png" alt=""></a></li>
                     </ul>
                 </div>
                 <!-- end footer list -->
@@ -42,7 +42,7 @@
                         <li><a href="mailto:support@moviego.com">danielazevedo2k2@gmail.com</a></li>
                     </ul>
                     <ul class="footer__social">
-                        <li class="facebook"><a href=https://www.facebook.com/dazevedoguimaraes#"><i class="icon ion-logo-facebook"></i></a></li>
+                        <li class="facebook"><a href="https://www.facebook.com/dazevedoguimaraes#"><i class="icon ion-logo-facebook"></i></a></li>
                         <li class="instagram"><a href="https://www.instagram.com/danielaze2k12/"><i class="icon ion-logo-instagram"></i></a></li>
                         <li class="twitter"><a href="https://twitter.com/danganf"><i class="icon ion-logo-twitter"></i></a></li>
                     </ul>

@@ -1,17 +1,20 @@
+// eslint-disable-next-line
+/* eslint-disable */
+
 require('./bootstrap');
 
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
-window.Vue = Vue;
-
 import App from './App'
-import Snotify from 'vue-snotify';
-import VueSwal from 'vue-swal';
+import router from './router'
 
-Vue.use(Snotify, {toast: {showProgressBar: false}});
-Vue.use(VueSwal);
+Vue.config.productionTip = false
 
+/* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    render: h => h(App)
-}).$mount('#app');
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})

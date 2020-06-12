@@ -3,7 +3,7 @@
         <section class="home">
 
             <div class="owl-carousel home__bg">
-                <div class="home__cover" style="background: url('img/home/home__bg4.jpg') center center / cover no-repeat;"></div>
+                <div class="home__cover" style="background: url('static/img/home/home__bg4.jpg') center center / cover no-repeat;"></div>
             </div>
 
             <div class="container">
@@ -50,9 +50,9 @@
 
 <script>
 
-    import Swiper from 'swiper';
-    import CProdCard from "../components/product/Card";
-    import {URL_BASE} from "../configs/configs";
+    import Swiper from 'swiper'
+    import CProdCard from '../components/product/Card'
+    import {URL_BASE} from '../configs/configs'
 
     export default {
 
@@ -94,7 +94,7 @@
             },
             async getProducts(){
                 this.preloader = true;
-                await window.axios.get( URL_BASE + 'films/home' )
+                await window.axios.get( process.env.URL_API_BACKEND + 'media/home' )
                     .then(( result ) => {
                         this.preloader          = false;
                         this.productsPopularity = result.data[0].data;
@@ -114,6 +114,7 @@
         },
 
         mounted() {
+            console.log(process.env);
             this.getProducts();
         }
     };

@@ -1,32 +1,27 @@
-# VUEFLIX
+# my-app
 
-### Link da DEMO:
-Ainda em desenvolvimento
-```
-https://unruffled-euler-98150e.netlify.app/
+> A Vue.js project
 
-### Link da BACKEDND feito em node:
-Ainda em desenvolvimento
-```
-https://vue-flix-backend.herokuapp.com/
-```
+## Build Setup
 
-## Project setup
-```
+``` bash
+# install dependencies
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# serve with hot reload at localhost:8080
+npm run dev
 
-### Compiles and minifies for production
-```
+# build for production with minification
 npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
 ```
 
-### Lints and fixes files
-```
-npm run lint
-``
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
