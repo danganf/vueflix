@@ -605,7 +605,8 @@ padding: 0 130px 0 20px;
 right: 20px;
 }
 }
-@media (min-width: 1200px) {
+
+@media (min-width: 1024px) {
 .header__sign-in {
 margin-left: 45px;
 }
@@ -3721,14 +3722,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   background-image: -ms-linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
   background-image: linear-gradient(180deg, #ff55a5 0%, #ff5860 100%);
 }
-.preloader{
-  color: white;
-  font-size: 2em;
-}
-
-.moveInUp-enter-active{
-  animation: fadeIn 1s ease-in;
-}
+.preloader{color: white;font-size: 2em;}
+.moveInUp-enter-active{animation: fadeIn 1s ease-in;}
 @keyframes fadeIn{
   0%{
     opacity: 0;
@@ -3739,4 +3734,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   100%{
     opacity: 1;
   }
+}
+
+@media(min-width: 320px){
+  section.section--first, section.details{margin-top: 40px !important;}
+}
+@media(min-width: 768px){
+  section.section--first, section.details{margin-top: 66px !important;}
 }
