@@ -29,6 +29,9 @@
         <div class="catalog">
             <div class="container">
                 <div class="row">
+                    <div v-if="preloader" style="text-align: center;width: 100%">
+                        <i class="fas fa-spinner fa-pulse preloader fa-1x"></i>
+                    </div>
                     <!-- card -->
                     <div class="col-6 col-sm-4 col-lg-3 col-xl-2" v-for="(product, idx) in products" :key="`prod`+idx">
                         <div class="card">
@@ -56,7 +59,7 @@
 </template>
 
 <script>
-    import CFilter from '../components/product/Filter';
+    import CFilter from '../components/product/Filter';    
     export default {
         props:{
 
@@ -68,7 +71,7 @@
             return {
                 preloader: false,
                 media: this.$route.params.media,
-                products: [],
+                products: []                
             }
         },
 
@@ -87,7 +90,7 @@
         },
 
         updated(){
-            console.log('asasaasas');
+            
         },
 
         mounted(){
