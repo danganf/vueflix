@@ -2,7 +2,7 @@
     <div id="app">
         <c-header></c-header>ssss
         <transition name="moveInUp">
-            <router-view></router-view>
+            <router-view :key="$route.fullPath"></router-view>
         </transition>
         <c-footer></c-footer>
     </div>

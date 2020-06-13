@@ -39,7 +39,7 @@
         methods:{
             async getDetail(){
                 this.preloader = true;
-                await window.axios.get( process.env.URL_API_BACKEND + "media\\" + this.$route.params.type + '\\' +  + this.$route.params.id   )
+                await window.axios.get( process.env.URL_API_BACKEND + "media/" + this.$route.params.type + '/' +  + this.$route.params.id   )
                     .then(( result ) => {
                         this.preloader = false;
                         this.product   = result.data;
@@ -58,10 +58,5 @@
 </script>
 
 <style scoped>
-    @media(min-width: 320px){
-        section.details{margin-top: 40px !important;}
-    }
-    @media(min-width: 768px){
-        section.details{margin-top: 66px !important;}
-    }
+
 </style>

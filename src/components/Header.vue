@@ -23,8 +23,8 @@
                                 <li class="header__nav-item">
                                     <a class="dropdown-toggle header__nav-link" href="#" role="button">Catalogo</a>
                                     <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-                                        <li><a href="#">Filmes</a></li>
-                                        <li><a href="#">Séries</a></li>
+                                        <li><router-link :to="{ name: 'media-list', force: true, params: { media: 'movie' } }" role="button" class="header__nav-link">Filmes</router-link></li>
+                                        <li><router-link :to="{ name: 'media-list', force: true, params: { media: 'tv' } }" role="button" class="header__nav-link">Séries</router-link></li>
                                     </ul>
                                 </li>
                                 <!-- end dropdown -->
@@ -45,7 +45,7 @@
                             <!-- end header auth -->
 
                             <!-- header menu btn -->
-                            <button class="header__btn" type="button">
+                            <button class="header__btn" ref="btnMenuMobile" type="button">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -97,10 +97,23 @@
                     element.classList.remove("header__search--active");
                 }
             }, false);
+
+            this.$refs.btnMenuMobile.addEventListener("click", function() {
+                let element = document.getElementsByClassName("header__nav")[0];
+                if( element.className.indexOf('header__nav--active') === -1 ) {
+                    element.classList.add("header__nav--active");
+                    this.classList.add("header__btn--active");
+                } else {
+                    element.classList.remove("header__nav--active");
+                    this.classList.remove("header__btn--active");
+                }
+            }, false);
         }
     };
 </script>
 
 <style>
-
+    @media(max-width: 768px){
+        .header__nav-item:hover .dropdown-menu{top: -60px;}
+    }
 </style>

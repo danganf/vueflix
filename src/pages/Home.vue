@@ -124,6 +124,7 @@
     .swiper-wrapper{display: inline-flex;}
     .home__cover{height: 100%;}
     .home__carousel .item{float: left;}
+    .home__bg {top: -24px;}
 
     @media (min-width: 320px) {
         .home__carousel .item{padding: 0 15px 0 15px;}
