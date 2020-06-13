@@ -23,7 +23,7 @@
         </section>
         <!-- end page title -->
 
-        <c-filter></c-filter>
+        <c-filter @emit-filter="filter" :media="media"></c-filter>
 
         <!-- catalog -->
         <div class="catalog">
@@ -71,14 +71,17 @@
             return {
                 preloader: false,
                 media: this.$route.params.media,
-                products: []                
+                products: [],
+                urlFilter:  '',
+                page: 1,        
             }
         },
 
         methods:{
             async getList(){
                 this.preloader = true;
-                await window.axios.get( `${process.env.URL_API_BACKEND}media/${this.media}/search/1` )
+                this.products  = [];
+                await window.axios.get( `${process.env.URL_API_BACKEND}media/${this.media}/search/${this.page}?${this.urlFilter}` )
                     .then(( result ) => {
                         this.preloader = false;
                         this.products  = result.data;
@@ -86,6 +89,17 @@
                     }).catch(error => {
                         this.preloader = false;
                     });
+            },
+            async filter(filter){
+                this.urlFilter = Object.keys(filter).map(function(key) { 
+                    return key + '=' + ( filter[key] || '' ); 
+                }).join('&'); 
+            }
+        },
+
+        watch:{
+            urlFilter(){
+                this.getList();
             }
         },
 
