@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
 import routes from './routers.map';
+import { cat } from 'shelljs';
 
 Vue.use(VueRouter);
 

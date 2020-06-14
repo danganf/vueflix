@@ -104,6 +104,7 @@
             async newPage(page){
                 this.current_page = page;
                 this.load         = true;
+                this.$router.push({name: this.$route.name, params: { media: this.media, page: this.current_page } });
             }
         },
 
@@ -126,8 +127,7 @@
             } else {
                 this.current_page = 1;
             }
-            this.load = true;
-            console.log('carregou media list...');
+            this.load = true;                   
         }
     }
 </script>

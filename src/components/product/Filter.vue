@@ -42,7 +42,20 @@
 									<i @click="max" class="icon ion-ios-arrow-forward"></i>
 								</div>
 
-							</div>							
+							</div>
+
+							<div class="filter__item" id="filter__dir">
+								<span class="filter__item-label">direção:</span>
+
+								<div class="filter__item-btn dropdown-toggle divDropDown"  data-action="dir" role="navigation" id="filter-dir" data-toggle="dropdown" aria-expanded="false">
+									<input type="button" :value="storage.get('dir_name')">
+									<span></span>
+								</div>
+
+								<vue-custom-scrollbar :key="'drop-dir'" tagname="ul" :settings="settings" class="dropmenu-dir filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-dir">
+									<li v-for="item in dir" :key="`sort-${item.id}`" @click="selectItemDropDown(item, 'dir')">{{item.name}}</li>
+								</vue-custom-scrollbar>
+							</div>						
 							
 						</div>
 						
@@ -80,9 +93,13 @@
 					scrollingThreshold: 500,
 				},
 				genres: [],
-				preloader: false,
-				storage: new storageFilter( this.media ),
 				sort: [],
+				dir: [
+					{ id: 'asc' , name: 'Ascendente' },
+					{ id: 'desc', name: 'Descrecente' },
+				],
+				preloader: false,
+				storage: new storageFilter( this.media ),				
 			}
 		},
 
@@ -179,8 +196,7 @@
 						this.setAttribute("aria-expanded", "false");
 					}
 				}, false);
-			});
-			console.log('carregou filter...');
+			});			
 			
 		}
     }
