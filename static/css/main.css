@@ -2106,12 +2106,7 @@ Home
 	Catalog
 ==============================*/
 .catalog {
-  padding: 0 0 20px;
-}
-@media (min-width: 768px) {
-  .catalog {
-    padding: 0 0 45px;
-  }
+  padding: 0;
 }
 /*==============================
 	Filter
@@ -2474,14 +2469,16 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .paginator__item--active a:hover {
   color: #fff;
 }
-@media (min-width: 360px) {
+@media (min-width: 320px) {
   .paginator {
-    width: 300px;
+    width: 100%;
+    margin: 30px auto 50px auto;
   }
 }
 @media (min-width: 768px) {
   .paginator {
-    margin: 30px auto;
+    width: 300px;
+    margin: 30px auto 50px auto;
   }
   .paginator--list {
     margin: 10px auto 30px;

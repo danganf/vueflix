@@ -25,6 +25,12 @@
 
         <c-filter @emit-filter="filter" :media="media"></c-filter>
 
+        <!-- paginator -->
+        <div class="col-12">
+            <c-paginator @emit-paginator-page="newPage" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
+        </div>
+        <!-- end paginator -->
+
         <!-- catalog -->
         <div class="catalog">
             <div class="container">
@@ -34,46 +40,37 @@
                     </div>
                     <!-- card -->
                     <div class="col-6 col-sm-4 col-lg-3 col-xl-2" v-for="(product, idx) in products" :key="`prod`+idx">
-                        <div class="card">
-                            <div class="card__cover">
-                                <img :src="product.poster_path" alt="">
-                                <a href="#" class="card__play">
-                                    <i class="icon ion-ios-play"></i>
-                                </a>
-                            </div>
-                            <div class="card__content">
-                                <h3 class="card__title"><a href="#">{{product.title}}</a></h3>
-                                <span class="card__category">
-                                    <a href="#">Action</a>
-                                    <a href="#">Triler</a>
-                                </span>
-                                <span class="card__rate"><i class="icon ion-ios-star"></i>{{product.vote_average}}</span>
-                            </div>
-                        </div>
+                        <c-prod-card :class-name="''" :media-type="media" :product="product"></c-prod-card>                    
                     </div>
                     <!-- end card -->
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
-    import CFilter from '../components/product/Filter';    
+    import CFilter from '../components/product/Filter'   
+    import CProdCard from '../components/product/Card' 
+    import CPaginator from '../components/Paginator' 
+    
     export default {
         props:{
 
         },
 
-        components: { CFilter },
-        
+        components: { CFilter, CProdCard, CPaginator },
+                
         data(){
             return {
                 preloader: false,
                 media: this.$route.params.media,
                 products: [],
-                urlFilter:  '',
-                page: 1,        
+                current_page: 0,
+                total_pages: 0,
+                total_results: 0,
+                urlFilter:  '',                       
             }
         },
 
@@ -81,10 +78,12 @@
             async getList(){
                 this.preloader = true;
                 this.products  = [];
-                await window.axios.get( `${process.env.URL_API_BACKEND}media/${this.media}/search/${this.page}?${this.urlFilter}` )
+                await window.axios.get( `${process.env.URL_API_BACKEND}media/${this.media}/search/${this.current_page}?${this.urlFilter}` )
                     .then(( result ) => {
-                        this.preloader = false;
-                        this.products  = result.data;
+                        this.preloader     = false;
+                        this.products      = result.data;
+                        this.total_results = 9586;
+                        this.total_pages   = 480;
 
                     }).catch(error => {
                         this.preloader = false;
@@ -94,11 +93,17 @@
                 this.urlFilter = Object.keys(filter).map(function(key) { 
                     return key + '=' + ( filter[key] || '' ); 
                 }).join('&'); 
+            },
+            async newPage(page){
+                this.current_page = page;
             }
         },
 
         watch:{
             urlFilter(){
+                this.getList();
+            },
+            current_page(){
                 this.getList();
             }
         },
@@ -108,7 +113,11 @@
         },
 
         mounted(){
-            this.getList();
+            if( this.$route.params.page ){
+                this.current_page = parseInt( this.$route.params.page );
+            } else {
+                this.current_page = 1;
+            }
         }
     }
 </script>

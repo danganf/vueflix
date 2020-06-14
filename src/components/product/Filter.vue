@@ -26,7 +26,9 @@
 								<span class="filter__item-label">Ano:</span>
 
 								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<input type="number" min="1900" ref="year" name="year" value="2020" style="width: 23%" maxlength="4" required>
+									<i @click="minus" class="icon ion-ios-arrow-back"></i>
+									<input type="button" ref="year" :value="filter.year" style="margin-right: 10px">
+									<i @click="max" class="icon ion-ios-arrow-forward"></i>
 								</div>
 
 							</div>
@@ -98,7 +100,20 @@
 			},
 			filtering(){
 				this.$emit('emit-filter', this.filter);
+			},
+			minus(){
+				let val = this.filter.year;
+				if( val >= 1900 ){
+					this.filter.year--;
+				}
+			},
+			max(){
+				this.filter.year++;
 			}
+		},
+
+		updated(){
+			this.filter.year = parseInt( this.filter.year );
 		},
 
 		mounted(){
@@ -125,4 +140,23 @@
 	.ps-container {position: absolute !important;}
 	.ps__thumb-x, .ps__thumb-y{background-color: red; background-image: linear-gradient(rgb(255, 85, 165) 0%, rgb(255, 88, 96) 100%) !important;width: 3px !important;}
 	.preloader {font-size: 1.4em;margin-left: 5px;position: absolute;}
+	i.icon {
+		border: 1px solid rgba(255,255,255,0.26);
+		padding: 5px 5px 4px;
+		line-height: 100%;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		margin-right: 10px;
+		font-size: 12px;
+		font-weight: 700;
+		color: rgba(255,255,255,0.65);
+	}
+	i.icon:hover{
+		background-image: -moz-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+  		background-image: -webkit-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+  		background-image: -ms-linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+		background-image: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+		box-shadow: 0 0 20px 0 rgba(255,88,96,0.5);
+		opacity: 0.85;
+	}
 </style>

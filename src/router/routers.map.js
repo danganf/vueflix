@@ -18,7 +18,7 @@ export default [
     },
 
     {
-        path: '/:media',
+        path: '/:media/:page?',
         component: MediaList,
         name: 'media-list',
     },
