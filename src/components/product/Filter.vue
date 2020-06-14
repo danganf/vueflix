@@ -96,7 +96,7 @@
 				sort: [],
 				dir: [
 					{ id: 'asc' , name: 'Ascendente' },
-					{ id: 'desc', name: 'Descrecente' },
+					{ id: 'desc', name: 'Decrescente' },
 				],
 				preloader: false,
 				storage: new storageFilter( this.media ),				
@@ -162,7 +162,7 @@
 				this.storage.set('sort'      , 'popularity');
 				this.storage.set('sort_name' , 'Popularidade');
 				this.storage.set('dir'       , 'desc');
-				this.storage.set('dir_name'  , 'Descrecente');
+				this.storage.set('dir_name'  , 'Decrescente');
 				this.storage.set('year', process.env.CURRENT_YEAR);
 			}
 
