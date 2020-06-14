@@ -11,7 +11,7 @@
 								<span class="filter__item-label">GÊNERO:<i v-if="preloader" class="fas fa-spinner fa-pulse preloader fa-1x"></i></span>
 
 								<div class="filter__item-btn dropdown-toggle" ref="divDropDown"  data-action="genre" role="navigation" id="filter-genre" data-toggle="dropdown" aria-expanded="false">
-									<input type="button" ref="genre" value="Selecione">
+									<input type="button" ref="genre" :value="storage.get('genre_name')">
 									<span></span>
 								</div>
 								<vue-custom-scrollbar tagname="ul" :settings="settings" class="dropmenu-genre filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
@@ -27,7 +27,7 @@
 
 								<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<i @click="minus" class="icon ion-ios-arrow-back"></i>
-									<input type="button" ref="year" :value="filter.year" style="margin-right: 10px">
+									<input type="button" ref="year" :value="storage.get('year')" style="margin-right: 10px">
 									<i @click="max" class="icon ion-ios-arrow-forward"></i>
 								</div>
 
@@ -47,7 +47,10 @@
 </template>
 
 <script>
+	
 	import vueCustomScrollbar from 'vue-custom-scrollbar'
+	import {storageFilter} from '../../class/storage-filter'
+
     export default {
 		props:{
 			media:{
@@ -67,10 +70,7 @@
 				},
 				genres: [],
 				preloader: false,
-				filter: {
-					genre: null,
-					year: process.env.CURRENT_YEAR
-				}
+				storage: new storageFilter( this.media ),
 			}
 		},
 
@@ -83,8 +83,8 @@
 					name = item.name;
 				}
 				this.$refs[action].value = name;
-				this.filter.genre        = id;
-
+				this.storage.set('genre'     , id);
+				this.storage.set('genre_name', name);
 				this.$refs.divDropDown.click();
 			},
 			async getGenresList(){
@@ -99,25 +99,30 @@
                     });
 			},
 			filtering(){
-				this.$emit('emit-filter', this.filter);
+				console.log();
+				this.$emit('emit-filter');
 			},
 			minus(){
-				let val = this.filter.year;
+				let val = parseInt( this.storage.get('year') );
 				if( val >= 1900 ){
-					this.filter.year--;
+					this.storage.set('year', --val);
 				}
 			},
 			max(){
-				this.filter.year++;
+				let val = parseInt( this.storage.get('year') );
+				this.storage.set('year', ++val);
 			}
 		},
 
-		updated(){
-			this.filter.year = parseInt( this.filter.year );
-		},
-
 		mounted(){
+
+			if( !this.storage.get('year') ){
+				this.storage.set('genre_name', 'Selecione');
+				this.storage.set('year', process.env.CURRENT_YEAR);
+			}
+
 			this.getGenresList();
+
 			this.$refs.year.addEventListener("click", function() {
 				this.select();
 			}, false);

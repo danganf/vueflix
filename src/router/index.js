@@ -9,6 +9,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    //to.meta.prev_name  = from.name;
+    //to.meta.prev_query = from.query;
+    //console.log(to.meta, from);
     // if (to.meta.auth && !store.state.auth.authenticated) {
     //     return router.push({name: 'auth'})
     // }

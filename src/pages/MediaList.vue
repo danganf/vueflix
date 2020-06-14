@@ -53,7 +53,8 @@
 <script>
     import CFilter from '../components/product/Filter'   
     import CProdCard from '../components/product/Card' 
-    import CPaginator from '../components/Paginator' 
+    import CPaginator from '../components/Paginator'
+    import {storageFilter} from '../class/storage-filter'
     
     export default {
         props:{
@@ -70,7 +71,8 @@
                 current_page: 0,
                 total_pages: 0,
                 total_results: 0,
-                urlFilter:  '',                       
+                urlFilter:  '',
+                storage: new storageFilter( this.$route.params.media ),                     
             }
         },
 
@@ -89,20 +91,16 @@
                         this.preloader = false;
                     });
             },
-            async filter(filter){
-                this.urlFilter = Object.keys(filter).map(function(key) { 
-                    return key + '=' + ( filter[key] || '' ); 
-                }).join('&'); 
+            async filter(){
+                this.urlFilter = this.storage.getUrlFilter();
+                this.getList();
             },
             async newPage(page){
                 this.current_page = page;
             }
         },
 
-        watch:{
-            urlFilter(){
-                this.getList();
-            },
+        watch:{            
             current_page(){
                 this.getList();
             }
@@ -113,6 +111,7 @@
         },
 
         mounted(){
+            this.urlFilter = this.storage.getUrlFilter();
             if( this.$route.params.page ){
                 this.current_page = parseInt( this.$route.params.page );
             } else {
