@@ -25,11 +25,17 @@
 
         <c-filter @emit-filter="filter" :media="media"></c-filter>
 
+        <!-- paginator -->
+        <div class="col-12" v-show="!preloader">
+            <c-paginator @emit-paginator-page="newPage" :key="'paginator-top'" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
+        </div>
+        <!-- end paginator -->
+
         <!-- catalog -->
         <div class="catalog">
             <div class="container">
                 <div class="row">
-                    <div v-if="preloader" style="text-align: center;width: 100%">
+                    <div v-if="preloader" style="text-align: center;width: 100%;margin-bottom: 50px">
                         <i class="fas fa-spinner fa-pulse preloader fa-1x"></i>
                     </div>
                     <!-- card -->
@@ -42,8 +48,8 @@
         </div>
 
         <!-- paginator -->
-        <div class="col-12">
-            <c-paginator @emit-paginator-page="newPage" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
+        <div class="col-12" v-show="!preloader">
+            <c-paginator @emit-paginator-page="newPage" :key="'paginator-bottom'" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
         </div>
         <!-- end paginator -->
 
@@ -86,8 +92,8 @@
                     .then(( result ) => {
                         this.preloader     = false;
                         this.products      = result.data;
-                        this.total_results = 9586;
-                        this.total_pages   = 480;                        
+                        this.total_results = parseInt(result.headers['x-paginator-total-results']);
+                        this.total_pages   = parseInt(result.headers['x-paginator-total-pages']);                
 
                     }).catch(error => {
                         this.preloader = false;
