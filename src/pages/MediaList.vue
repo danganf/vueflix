@@ -25,12 +25,6 @@
 
         <c-filter @emit-filter="filter" :media="media"></c-filter>
 
-        <!-- paginator -->
-        <div class="col-12">
-            <c-paginator @emit-paginator-page="newPage" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
-        </div>
-        <!-- end paginator -->
-
         <!-- catalog -->
         <div class="catalog">
             <div class="container">
@@ -46,6 +40,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- paginator -->
+        <div class="col-12">
+            <c-paginator @emit-paginator-page="newPage" :route_name="'media-list'" :current_page="current_page" :total_pages="total_pages" :total_results="total_results" :limit="20"></c-paginator>
+        </div>
+        <!-- end paginator -->
 
     </div>
 </template>
