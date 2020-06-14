@@ -66,6 +66,7 @@
         data(){
             return {
                 preloader: false,
+                load: false,
                 media: this.$route.params.media,
                 products: [],
                 current_page: 0,
@@ -78,6 +79,7 @@
 
         methods:{
             async getList(){
+                this.load      = false;
                 this.preloader = true;
                 this.products  = [];
                 await window.axios.get( `${process.env.URL_API_BACKEND}media/${this.media}/search/${this.current_page}?${this.urlFilter}` )
@@ -85,24 +87,31 @@
                         this.preloader     = false;
                         this.products      = result.data;
                         this.total_results = 9586;
-                        this.total_pages   = 480;
+                        this.total_pages   = 480;                        
 
                     }).catch(error => {
                         this.preloader = false;
                     });
             },
-            async filter(){
-                this.urlFilter = this.storage.getUrlFilter();
-                this.getList();
+            filter(){                
+                this.urlFilter    = this.storage.getUrlFilter();                
+                this.load         = true;
+                if( this.current_page > 1 ){
+                    this.current_page = 1;
+                    this.$router.push({name: this.$route.name, params: { media: this.media, page: this.current_page } });
+                }
             },
             async newPage(page){
                 this.current_page = page;
+                this.load         = true;
             }
         },
 
         watch:{            
-            current_page(){
-                this.getList();
+            load(val){
+                if( val === true ){
+                    this.getList();
+                }
             }
         },
 
@@ -117,6 +126,8 @@
             } else {
                 this.current_page = 1;
             }
+            this.load = true;
+            console.log('carregou media list...');
         }
     }
 </script>

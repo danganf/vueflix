@@ -13,7 +13,12 @@
 	import CFooter from "./components/Footer"
 	export default {
 		name: 'App',
-		components: { CHeader, CFooter }
+        components: { CHeader, CFooter },
+        mounted(){
+            let path = this.$route.fullPath.split('/');
+            //path.pop();
+            console.log(path);
+        }
 	}
 </script>
 

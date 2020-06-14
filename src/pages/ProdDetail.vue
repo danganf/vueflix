@@ -52,7 +52,7 @@
         },
 
         created() {        
-            this.getDetail();
+            this.getDetail();            
         }
     }
 </script>

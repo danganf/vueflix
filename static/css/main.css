@@ -2350,7 +2350,7 @@ Home
 }
 @media (min-width: 1200px) {
   .filter__item {
-    margin-right: 60px;
+    margin-right: 40px;
   }
 }
 /* range slider */
@@ -3732,7 +3732,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     opacity: 1;
   }
 }
-
+.no-cover{opacity: 0.6;}
 @media(min-width: 320px){
   section.section--first, section.details{margin-top: 40px !important;}
 }

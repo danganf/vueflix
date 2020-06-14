@@ -1,7 +1,7 @@
 <template>
     <div class="card" :class="className">
         <div class="card__cover">
-            <img :src="product.poster_path" alt="">
+            <img :class="{ 'no-cover': !product.poster_path }" :src="product.poster_path || 'static/img/covers/no.png'" alt="">
             <a class="card__play" @click="toDetail(product.id)"><i class="icon ion-ios-play"></i></a>
         </div>
         <div class="card__content">
@@ -50,5 +50,5 @@
 </script>
 
 <style scoped>
-    .card__title, .card__play{cursor: pointer;}
+    .card__title, .card__play{cursor: pointer;}    
 </style>
