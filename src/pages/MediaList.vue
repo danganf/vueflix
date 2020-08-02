@@ -23,7 +23,7 @@
         </section>
         <!-- end page title -->
 
-        <c-filter @emit-filter="filter" :media="media"></c-filter>
+        <c-filter @emit-filter="filter" :param-genre="params.genre" :media="media"></c-filter>
 
         <!-- paginator -->
         <div class="col-12" v-show="!preloader">
@@ -79,6 +79,9 @@
                 total_pages: 0,
                 total_results: 0,
                 urlFilter:  '',
+                params:{
+                    genre: null
+                },
                 storage: new storageFilter( this.$route.params.media ),                     
             }
         },
@@ -104,14 +107,21 @@
                 this.load         = true;
                 if( this.current_page > 1 ){
                     this.current_page = 1;
-                    this.$router.push({name: this.$route.name, params: { media: this.media, page: this.current_page } });
+                    this.$router.push({name: this.$route.name, query: this.params, params: { media: this.media, page: this.current_page } });
                 }
             },
             async newPage(page){
                 this.current_page = page;
                 this.load         = true;
-                this.$router.push({name: this.$route.name, params: { media: this.media, page: this.current_page } });
-            }
+                this.$router.push({name: this.$route.name, query: this.params, params: { media: this.media, page: this.current_page } });
+            },
+            verifyParmsFilter(){
+                const genre = this.$route.query.genre;
+                if( typeof genre !== 'undefined' && genre ){
+                    this.params.genre = parseInt(genre);
+                    this.storage.set('genre', genre);
+                }
+            }           
         },
 
         watch:{            
@@ -127,13 +137,16 @@
         },
 
         mounted(){
+            this.verifyParmsFilter();
             this.urlFilter = this.storage.getUrlFilter();
             if( this.$route.params.page ){
                 this.current_page = parseInt( this.$route.params.page );
             } else {
                 this.current_page = 1;
             }
-            this.load = true;                   
+            
+            this.load = true;
+            
         }
     }
 </script>

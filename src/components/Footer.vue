@@ -68,20 +68,20 @@
 
 <script>
 
-    export default {
-        components: {},
-        data: () => {
-            return {
+export default {
+  components: {},
+  data: () => {
+    return {
 
-            }
-        },
-        methods:{
+    }
+  },
+  methods: {
 
-        },
+  },
 
-        mounted() {
-        }
-    };
+  mounted () {
+  }
+}
 </script>
 
 <style>

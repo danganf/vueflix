@@ -76,40 +76,40 @@
 
 <script>
 
-    export default {
-        components: {},
-        data: () => {
-            return {
+export default {
+  components: {},
+  data: () => {
+    return {
 
-            }
-        },
-        methods:{
+    }
+  },
+  methods: {
 
-        },
+  },
 
-        mounted() {
-            document.getElementById("search-btn").addEventListener("click", function() {
-                let element = document.getElementById("header__search");
-                if( element.className.indexOf('header__search--active') === -1 ) {
-                    element.classList.add("header__search--active");
-                    element.getElementsByTagName('input')[0].focus();
-                } else {
-                    element.classList.remove("header__search--active");
-                }
-            }, false);
+  mounted () {
+    document.getElementById('search-btn').addEventListener('click', function () {
+      let element = document.getElementById('header__search')
+      if (element.className.indexOf('header__search--active') === -1) {
+        element.classList.add('header__search--active')
+        element.getElementsByTagName('input')[0].focus()
+      } else {
+        element.classList.remove('header__search--active')
+      }
+    }, false)
 
-            this.$refs.btnMenuMobile.addEventListener("click", function() {
-                let element = document.getElementsByClassName("header__nav")[0];
-                if( element.className.indexOf('header__nav--active') === -1 ) {
-                    element.classList.add("header__nav--active");
-                    this.classList.add("header__btn--active");
-                } else {
-                    element.classList.remove("header__nav--active");
-                    this.classList.remove("header__btn--active");
-                }
-            }, false);
-        }
-    };
+    this.$refs.btnMenuMobile.addEventListener('click', function () {
+      let element = document.getElementsByClassName('header__nav')[0]
+      if (element.className.indexOf('header__nav--active') === -1) {
+        element.classList.add('header__nav--active')
+        this.classList.add('header__btn--active')
+      } else {
+        element.classList.remove('header__nav--active')
+        this.classList.remove('header__btn--active')
+      }
+    }, false)
+  }
+}
 </script>
 
 <style>

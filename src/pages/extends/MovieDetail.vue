@@ -31,12 +31,13 @@
                                     <ul class="card__meta">
                                         <li>
                                             <span>Gênero:</span>
-                                            <a href="#" v-for="(row, idx) in product.genres" :key="'genres-'+idx">{{row.name}}</a>
+                                            <router-link :to="{ name: 'media-list', force: true, params: { media: 'movie' }, query: { genre: row.id } }" v-for="(row, idx) in product.genres" :key="'genres-'+idx">{{row.name}}</router-link>
                                         </li>
                                         <li><span>Popularidade:</span> {{product.popularity}}</li>
                                         <li>
                                             <span>Produção:</span>
-                                            <br/><a href="#" v-for="(row, idx) in product.production_companies" :key="'production_companies-'+idx">{{row.name}}</a>                                            
+                                            <br/>
+                                            <router-link :to="{ name: 'media-list', force: true, params: { media: 'movie' }, query: { company: row.id } }" v-for="(row, idx) in product.production_companies" :key="'production_companies-'+idx">{{row.name}}</router-link>
                                         </li>                                    
                                     </ul>
 

@@ -16,39 +16,45 @@
 </template>
 
 <script>
-    export default {
-        props:{
-            product:{
-                type: Object,
-                required: true
-            },
-            mediaType:{
-                type: String,
-                default: 'movie'
-            },
-            className:{
-                type: String,
-                default: 'card--big'
-            }
-        },
-
-        data(){
-            return {
-            }
-        },
-
-        methods:{
-            toDetail(prodId){
-                this.$router.push({name: 'prod-detail', params: { type: this.mediaType, id: prodId } } )
-            }
-        },
-
-        mounted() {
-
-        }
+export default {
+  props: {
+    product: {
+      type: Object,
+      required: true
+    },
+    mediaType: {
+      type: String,
+      default: 'movie'
+    },
+    className: {
+      type: String,
+      default: 'card--big'
     }
+  },
+
+  data () {
+    return {
+    }
+  },
+
+  methods: {
+    toDetail (prodId) {
+      this.$router.push({
+        name: 'prod-detail',
+        params: {
+          type: this.mediaType,
+          id: prodId
+        }
+      })
+    }
+  },
+
+  mounted () {
+
+  }
+}
 </script>
 
 <style scoped>
-    .card__title, .card__play{cursor: pointer;}    
+    .card__title, .card__play{cursor: pointer;}
 </style>

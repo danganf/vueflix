@@ -9,13 +9,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 n-p-l">
-                        <h1 class="home__title">Os mais <b>populares</b> <i v-if="preloader" class="fas fa-spinner fa-pulse fa-1x"></i></h1>                        
+                        <h1 class="home__title">Os mais <b>populares</b> <i v-if="preloader" class="fas fa-spinner fa-pulse fa-1x"></i></h1>
                         <button class="home__nav home__nav--prev" type="button"><i class="icon ion-ios-arrow-round-back"></i></button>
                         <button class="home__nav home__nav--next" type="button"><i class="icon ion-ios-arrow-round-forward"></i></button>
                     </div>
 
-                    <div class="col-12 carrousel-container">  
-                        <div class="owl-carousel home__carousel swiper-wrapper">                                                     
+                    <div class="col-12 carrousel-container">
+                        <div class="owl-carousel home__carousel swiper-wrapper">
                             <div v-for="(product, idx) in productsPopularity.data" :key="`c-prod-card${idx}`" class="item swiper-slide">
                                 <c-prod-card :media-type="productsPopularity.media" :product="product"></c-prod-card>
                             </div>
@@ -44,79 +44,85 @@
                 </div>
             </div>
         </section>
-        
+
     </div>
 </template>
 
 <script>
 
-    import Swiper from 'swiper'
-    import CProdCard from '../components/product/Card'
-    import {URL_BASE} from '../configs/configs'
+import Swiper from 'swiper'
+import CProdCard from '../components/product/Card'
 
-    export default {
+export default {
 
-        components: { CProdCard },
+  components: { CProdCard },
 
-        data: () => {
-            return {
-                productsPopularity: [],
-                products: [],
-                preloader: false,
-            }
+  data: () => {
+    return {
+      productsPopularity: [],
+      products: [],
+      preloader: false
+    }
+  },
+  methods: {
+    initSwiper () {
+      // eslint-disable-next-line no-new
+      new Swiper('.carrousel-container', {
+        spaceBetween: 30,
+        speed: 500,
+        slidesPerView: 4,
+        slidesPerColumn: 1,
+        watchSlidesVisibility: true,
+        autoplay: false,
+        loop: true,
+        // Responsive breakpoints
+        breakpoints: {
+          0: {
+            slidesPerView: 1 },
+          375: {
+            slidesPerView: 1 },
+          425: {
+            slidesPerView: 2 },
+          576: {
+            slidesPerView: 2 },
+          768: {
+            slidesPerView: 3 },
+          992: {
+            slidesPerView: 4 },
+          1200: {
+            slidesPerView: 4 }
         },
-        methods:{
-            initSwiper () {
-                new Swiper('.carrousel-container', {
-                    spaceBetween: 30,
-                    speed: 500,
-                    slidesPerView: 4,
-                    slidesPerColumn: 1,
-                    watchSlidesVisibility: true,
-                    autoplay: false,
-                    loop: true,
-                    // Responsive breakpoints
-                    breakpoints: {
-                        0    : {slidesPerView: 1,},
-                        375  : {slidesPerView: 1,},
-                        425  : {slidesPerView: 2,},
-                        576  : {slidesPerView: 2,},
-                        768  : {slidesPerView: 3,},
-                        992  : {slidesPerView: 4,},
-                        1200 : {slidesPerView: 4,},
-                    },
-                    navigation: {
-                        nextEl: '.home__nav--next',
-                        prevEl: '.home__nav--prev',
-                    },
-                    paginationClickable: false,
-                });
-            },
-            async getProducts(){
-                this.preloader = true;
-                await window.axios.get( process.env.URL_API_BACKEND + 'media/home' )
-                    .then(( result ) => {
-                        this.preloader          = false;
-                        this.productsPopularity = result.data[0];
-                        result.data.splice(0,1);
-                        this.products = result.data;
-
-                    }).catch(error => {
-                        console.log(error);
-                        this.preloader = false;
-                    });
-            }
-
+        navigation: {
+          nextEl: '.home__nav--next',
+          prevEl: '.home__nav--prev'
         },
+        paginationClickable: false
+      })
+    },
+    async getProducts () {
+      this.preloader = true
+      await window.axios.get(process.env.URL_API_BACKEND + 'media/home')
+        .then((result) => {
+          this.preloader = false
+          this.productsPopularity = result.data[0]
+          result.data.splice(0, 1)
+          this.products = result.data
+        }).catch(error => {
+          console.log(error)
+          this.preloader = false
+        })
+    }
 
-        updated(){
-            this.initSwiper();
-        },
+  },
 
-        mounted() {
-            this.getProducts();
-        }
-    };
+  updated () {
+    this.initSwiper()
+  },
+
+  mounted () {
+    this.getProducts()
+  }
+}
 </script>
 
 <style scoped>
