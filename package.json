@@ -13,7 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19",
+    "axios": "^0.21",
     "modal-vue": "*",
     "popper.js": "*",
     "swiper": "^5.4.0",
