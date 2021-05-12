@@ -16,7 +16,7 @@
     "axios": "^0.19",
     "modal-vue": "*",
     "popper.js": "*",
-    "swiper": "^5.4.0",
+    "swiper": "^6.5.1",
     "time-storage": "^1.0.0",
     "vue": "^2.5.2",
     "vue-custom-scrollbar": "^1.2.0",
